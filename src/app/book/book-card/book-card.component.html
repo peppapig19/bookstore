@@ -1,13 +1,20 @@
-<div class="book-card" [class]="book.onSale ? 'available' : ''">
-    <img class="image" src="../../../assets/cover.jpg">
+<div class="book-card gap" [class.available]="book.onSale">
+    <img class="image" [src]="book.img">
     <div class="details">
         <div class="name">{{book.name}}</div>
-        <div class="buy">
+        <div class="buy gap">
             <div class="price">$ {{book.price}}</div>
-            <div class="cart">
-                <button [disabled]="!book.cart" (click)="removeFromCart($event)">-</button>
-                <button (click)="addToCart($event)">+</button>
-                <div class="amount">Cart: {{book.cart}}</div>
+            <div class="cart gap" *ngIf="book.onSale">
+                <div class="cart-buttons">
+                    <button *ngIf="book.cart" (click)="removeFromCart($event)">-</button>
+                    <button (click)="addToCart($event)">+</button>
+                </div>
+                <div class="amount gap">
+                    <div>Cart:</div>
+                    <select>
+                        <option *ngFor="let q of quantity">{{q}}</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>

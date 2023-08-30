@@ -1,9 +1,15 @@
+.gap {
+    gap: 10px;
+}
+
 .book-card {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
+}
+
+.book-card, .details, .cart, .amount {
     display: flex;
-    gap: 10px;
 }
 
 .available {
@@ -16,20 +22,20 @@
 }
 
 .details {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+}
+
+.buy {
+    display: grid;
+    justify-items: end;
 }
 
 .cart {
-    margin-top: 10px;
-    display: flex;
+    flex-wrap: wrap;
 }
 
-.cart>button {
+button, select {
     width: 50px;
-}
-
-.amount {
-    margin-left: 10px;
 }

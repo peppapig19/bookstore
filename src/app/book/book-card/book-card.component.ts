@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from '../model/book';
 
 @Component({
@@ -7,13 +7,13 @@ import { Book } from '../model/book';
   styleUrls: ['./book-card.component.css']
 })
 export class BookCardComponent implements OnInit {
-  book: Book;
+  @Input() book: Book;
+  quantity: number[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.book = new Book('Harry Potter and the Order of the Phoenix', 19.02, '');
-    this.book.onSale = true;
+    this.quantity = Array.from(new Array(20), (_x, i) => i + 1);
   }
 
   addToCart(event: any) {

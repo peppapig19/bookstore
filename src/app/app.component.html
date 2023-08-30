@@ -1,6 +1,6 @@
 <div class="content">
-  <h1>Welcome to the Bookstore!</h1>
+  <h1 class="welcome">Welcome to the Bookstore!</h1>
   <div class="books-container">
-    <app-book-card></app-book-card>
+    <app-book-card *ngFor="let book of books; index as i; trackBy: trackBookByCode" [book]="book"></app-book-card>
   </div>
 </div>
