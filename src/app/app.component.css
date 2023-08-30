@@ -1,0 +1,9 @@
+.content {
+    text-align: center;
+    margin: 10px;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

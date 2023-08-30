@@ -1,0 +1,14 @@
+<div class="book-card" [class]="book.onSale ? 'available' : ''">
+    <img class="image" src="../../../assets/cover.jpg">
+    <div class="details">
+        <div class="name">{{book.name}}</div>
+        <div class="buy">
+            <div class="price">$ {{book.price}}</div>
+            <div class="cart">
+                <button [disabled]="!book.cart" (click)="removeFromCart($event)">-</button>
+                <button (click)="addToCart($event)">+</button>
+                <div class="amount">Cart: {{book.cart}}</div>
+            </div>
+        </div>
+    </div>
+</div>
