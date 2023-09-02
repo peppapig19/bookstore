@@ -1,28 +1,31 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Book } from '../model/book';
+import { BookQuantity } from '../model/book-quantity';
 
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
-  styleUrls: ['./book-card.component.css']
+  styleUrls: ['./book-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookCardComponent implements OnInit {
   @Input() book: Book;
-  quantity: number[];
+  @Output() changeQuantity: EventEmitter<BookQuantity> = new EventEmitter<BookQuantity>();
+  quantityOptions: number[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.quantity = Array.from(new Array(20), (_x, i) => i + 1);
+    this.quantityOptions = Array.from(new Array(20), (_x, i) => i + 1);
   }
 
-  addToCart(event: any) {
-    console.log(event);
-    this.book.cart++;
+  onIncrementQuantity(quantityChange: number) {
+    const bq = new BookQuantity(this.book);
+    bq.incrementQuantity(quantityChange);
+    this.changeQuantity.emit(bq);
   }
 
-  removeFromCart(event: any) {
-    console.log(event);
-    this.book.cart--;
+  onChangeQuantity(quantity: number) {
+    this.changeQuantity.emit(new BookQuantity(this.book, quantity));
   }
 }
