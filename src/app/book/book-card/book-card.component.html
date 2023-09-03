@@ -1,19 +1,19 @@
 <div class="book-card gap" [class.available]="book.onSale">
-    <img class="image" [src]="book.img">
+    <img class="image" [src]="'../../../assets/' + book.img">
     <div class="details">
         <div class="name">{{book.name}}</div>
         <div class="buy gap">
             <div class="price">$ {{book.price}}</div>
             <div class="cart gap" *ngIf="book.onSale">
                 <div class="cart-buttons">
-                    <button *ngIf="book.cart" (click)="onIncrementQuantity(-1)">-</button>
-                    <button *ngIf="book.cart < quantityOptions.length" (click)="onIncrementQuantity(1)">+</button>
+                    <button id="decrement" *ngIf="book.cart" (click)="onIncrementQuantity(-1)">-</button>
+                    <button id="increment" *ngIf="book.cart < quantityOptions.length" (click)="onIncrementQuantity(1)">+</button>
                 </div>
                 <div class="amount gap">
                     <div>Cart:</div>
-                    <select [(ngModel)]="book.cart" (ngModelChange)="onChangeQuantity(book.cart)">
-                        <option [value]="0">-</option>
-                        <option *ngFor="let q of quantityOptions">{{q}}</option>
+                    <select [(ngModel)]="book.cart" (ngModelChange)="onSelectQuantity(book.cart)">
+                        <option [ngValue]="0">-</option>
+                        <option *ngFor="let q of quantityOptions" [ngValue]="q">{{q}}</option>
                     </select>
                 </div>
             </div>

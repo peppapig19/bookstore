@@ -25,7 +25,7 @@ export class BookCardComponent implements OnInit {
     this.changeQuantity.emit(bq);
   }
 
-  onChangeQuantity(quantity: number) {
+  onSelectQuantity(quantity: number) {
     this.changeQuantity.emit(new BookQuantity(this.book, quantity));
   }
 }
